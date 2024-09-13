@@ -16,19 +16,19 @@ function identifyIndicator([string]$indicator) {
     $domainPattern = '^([a-z0-9]+(-[a-z0-9]+)*\.)+[a-z]{2,}$'
 
     if ($indicator -match $sha1HashPattern) {
-            return 'FileSha1,' + $line + ',"",BlockAndRemediate,High,"A malicious file has been detected in one of the endpoints.","Malicious File","Inspect the malicious file hash (SHA-1) in the context of the environment in which it has appeared (user, workstation)","","Execution","",true'
+            return 'FileSha1,' + $indicator + ',"",BlockAndRemediate,High,"A malicious file has been detected in one of the endpoints.","Malicious File","Inspect the malicious file hash (SHA-1) in the context of the environment in which it has appeared (user, workstation)","","Execution","",true'
     }
     elseif ($indicator -match $sha256HashPattern) {
-        return 'FileSha256,' + $line + ',"",BlockAndRemediate,High,"A malicious file has been detected in one of the endpoints.","Malicious File","Inspect the malicious file hash (SHA-256) in the context of the environment in which it has appeared (user, workstation)","","Execution","",true'
+        return 'FileSha256,' + $indicator + ',"",BlockAndRemediate,High,"A malicious file has been detected in one of the endpoints.","Malicious File","Inspect the malicious file hash (SHA-256) in the context of the environment in which it has appeared (user, workstation)","","Execution","",true'
     }
     elseif ($indicator -match $ipAddressPattern) {
-        return 'IpAddress,' + $line + ',"",Block,High,"Nefarious IP.","IP connected to malicious activity","Inspect the malicious IP in the context of the environment in which it has appeared (user, workstation, resource)","","SuspiciousActivity","",true'
+        return 'IpAddress,' + $indicator + ',"",Block,High,"Nefarious IP.","IP connected to malicious activity","Inspect the malicious IP in the context of the environment in which it has appeared (user, workstation, resource)","","SuspiciousActivity","",true'
     }
     elseif ($indicator -match $urlPattern) {
-        return 'Url,' + $line + ',"",Block,High,"Custom Domain Name Block.","Malicious Domain","Inspect the malicious URL in the context of the environment in which it has appeared (user, workstation)","","SuspiciousActivity","",true'
+        return 'Url,' + $indicator + ',"",Block,High,"Custom Domain Name Block.","Malicious Domain","Inspect the malicious URL in the context of the environment in which it has appeared (user, workstation)","","SuspiciousActivity","",true'
     }
     elseif ($indicator -match $domainPattern) {
-        return 'DomainName,' + $line + ',"",Block,High,"Custom Domain Name Block.","Malicious Domain","Inspect the malicious domain in the context of the environment in which it has appeared (user, workstation)","","SuspiciousActivity","",true'
+        return 'DomainName,' + $indicator + ',"",Block,High,"Custom Domain Name Block.","Malicious Domain","Inspect the malicious domain in the context of the environment in which it has appeared (user, workstation)","","SuspiciousActivity","",true'
     }
     else {
         Write-Output $indicator
