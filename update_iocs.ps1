@@ -16,19 +16,19 @@ function identifyIndicator([string]$indicator) {
     $domainPattern = '^([a-z0-9]+(-[a-z0-9]+)*\.)+[a-z]{2,}$'
 
     if ($indicator -match $sha1HashPattern) {
-            return 'FileSha1,' + $indicator + ',"",BlockAndRemediate,High,"A malicious file has been detected in one of the endpoints.","Malicious File","Inspect the malicious file hash (SHA-1) in the context of the environment in which it has appeared (user, workstation)","","Execution","",true'
+            return 'FileSha1,' + $indicator + ',"",BlockAndRemediate,High,"Malicious file(s) - Custom Detection","This file has been identified to exhibit malicious behavior.","Investigate the malicious file within the context of the environment where it was detected, considering the user, workstation, and any impacted resources.","","Execution","",true'
     }
     elseif ($indicator -match $sha256HashPattern) {
-        return 'FileSha256,' + $indicator + ',"",BlockAndRemediate,High,"A malicious file has been detected in one of the endpoints.","Malicious File","Inspect the malicious file hash (SHA-256) in the context of the environment in which it has appeared (user, workstation)","","Execution","",true'
+        return 'FileSha256,' + $indicator + ',"",BlockAndRemediate,High,"Malicious file(s) - Custom Detection","This file has been identified to exhibit malicious behavior.","Investigate the malicious file within the context of the environment where it was detected, considering the user, workstation, and any impacted resources.","","Execution","",true'
     }
     elseif ($indicator -match $ipAddressPattern) {
-        return 'IpAddress,' + $indicator + ',"",Block,High,"Nefarious IP.","IP connected to malicious activity","Inspect the malicious IP in the context of the environment in which it has appeared (user, workstation, resource)","","SuspiciousActivity","",true'
+        return 'IpAddress,' + $indicator + ',"",Block,High,"Malicious IP - Custom Detection","This IP has been associated with malicious activity.","Investigate the malicious IP address within the context of the environment where it was detected, taking into account the user, workstation, and any affected resources.","","SuspiciousActivity","",true'
     }
     elseif ($indicator -match $urlPattern) {
-        return 'Url,' + $indicator + ',"",Block,High,"Custom Domain Name Block.","Malicious Domain","Inspect the malicious URL in the context of the environment in which it has appeared (user, workstation)","","SuspiciousActivity","",true'
+        return 'Url,' + $indicator + ',"",Block,High,"Malicious URL - Custom Detection","This URL has been associated with malicious activity.","Investigate the malicious Domain within the context of the environment where it was detected, taking into account the user, workstation, and any affected resources.","","SuspiciousActivity","",true'
     }
     elseif ($indicator -match $domainPattern) {
-        return 'DomainName,' + $indicator + ',"",Block,High,"Custom Domain Name Block.","Malicious Domain","Inspect the malicious domain in the context of the environment in which it has appeared (user, workstation)","","SuspiciousActivity","",true'
+        return 'DomainName,' + $indicator + ',"",Block,High,"Malicious Domain - Custom Detection","This Domain has been associated with malicious activity.","Inspect the malicious domain in the context of the environment in which it has appeared (user, workstation)","","SuspiciousActivity","",true'
     }
     else {
         Write-Output $indicator
@@ -36,8 +36,8 @@ function identifyIndicator([string]$indicator) {
     }   
 }
 
-$importFilePath = Read-Host -Prompt "Enter the import file path"
-$exportFilePath = Read-Host -Prompt "Enter the export file path"
+$importFilePath = Read-Host -Prompt "Enter the import file path:"
+$exportFilePath = Read-Host -Prompt "Enter the export file path:"
 
 $content = Get-Content $importFilePath
 
