@@ -19,7 +19,7 @@ function identifyIndicator{
     $domainPattern = '^([a-z0-9]+(-[a-z0-9]+)*\.)+[a-z]{2,}$'
 
     if ($indicator -match $sha1HashPattern) {
-            return 'FileSha1,' + $indicator + ',"",BlockAndRemediate,High,"Malicious file(s) - Custom Detection","This file has been identified to exhibit malicious behavior.","Investigate the malicious file within the context of the environment where it was detected, considering the user, workstation, and any impacted resources.","","Execution","",true'
+        return 'FileSha1,' + $indicator + ',"",BlockAndRemediate,High,"Malicious file(s) - Custom Detection","This file has been identified to exhibit malicious behavior.","Investigate the malicious file within the context of the environment where it was detected, considering the user, workstation, and any impacted resources.","","Execution","",true'
     }
     elseif ($indicator -match $sha256HashPattern) {
         return 'FileSha256,' + $indicator + ',"",BlockAndRemediate,High,"Malicious file(s) - Custom Detection","This file has been identified to exhibit malicious behavior.","Investigate the malicious file within the context of the environment where it was detected, considering the user, workstation, and any impacted resources.","","Execution","",true'
