@@ -8,7 +8,10 @@
 # Url,http://www.facebook.com,2018-09-16T12:11:06.2446367Z,Block,Informational,"Url custom TI example","malware downloader","Recommended actions should be here","","","",true
 # DomainName,www.facebook.com,,Audit,Low,Domain custom TI example,"Red Team Activity","Recommended actions should be here","","None","",true
 
-function identifyIndicator([string]$indicator) {
+function identifyIndicator{
+    param (
+        [string]$indicator
+    )
     $sha1HashPattern = '^[0-9a-fA-F]{40}$'
     $sha256HashPattern = '^[0-9a-fA-F]{64}$'
     $ipAddressPattern = '^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$'
@@ -47,7 +50,7 @@ $modifiedLines = @()
 # Iterate through each line of the file
 foreach ($line in $content) {
     # Join the remaining elements of the array back into a string with a tab delimiter
-    $newLine = identifyIndicator($line)
+    $newLine = identifyIndicator -indicator $line
     if ($newLine -eq "Unknown indicator type"){
         continue
     }else{
