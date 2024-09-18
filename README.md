@@ -1,5 +1,5 @@
 # Introduction 
-This repo holds all the scripts and automation we need to automatically import a large amount of IoCs (500) at a time to MDE for blocking. 
+This repository contains all the scripts and automation necessary to automatically import up to 500 IoCs at a time into Microsoft Defender for Endpoint (MDE) for blocking.
 
 # Getting Started
 ## IoC preparation script
