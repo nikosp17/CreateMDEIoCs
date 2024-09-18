@@ -32,12 +32,12 @@ function identifyIndicator([string]$indicator) {
     }
     else {
         Write-Output $indicator
-        return "None of the above"
+        return "Unknown indicator type"
     }   
 }
 
-$importFilePath = Read-Host -Prompt "Enter the import file path:"
-$exportFilePath = Read-Host -Prompt "Enter the export file path:"
+$importFilePath = Read-Host -Prompt "Enter the import file path"
+$exportFilePath = Read-Host -Prompt "Enter the export file path"
 
 $content = Get-Content $importFilePath
 
@@ -48,7 +48,7 @@ $modifiedLines = @()
 foreach ($line in $content) {
     # Join the remaining elements of the array back into a string with a tab delimiter
     $newLine = identifyIndicator($line)
-    if ($newLine -eq "None of the above"){
+    if ($newLine -eq "Unknown indicator type"){
         continue
     }else{
         $modifiedLines += $newLine
